@@ -157,7 +157,7 @@ $user = $this->user->get_user($username);
 
 ####Step 3:
 
-Check if the given password is exactly equal to passwoed is stored in database.
+Check if the given password is exactly equal to password stored in database.
 
 In the example below, it is assumed that concatenation of `salt` and `password` which called `hash` is used as user's password. the *encrypt* method select the `salt` automatically.
 
