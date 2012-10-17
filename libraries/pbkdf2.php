@@ -159,7 +159,7 @@ class Pbkdf2 {
 	/**
 	 * PBKDF2 Encryption (Based on: http://www.ietf.org/rfc/rfc2898.txt)
 	 *
-	 * Returns a bin/hex string contains $key_length character
+	 * Returns a bin/hex string contains $dkLen character
 	 *
 	 * @param	string	$algo	hash algorithm	(recommended sha256)
 	 * @param	string	$P  	password
