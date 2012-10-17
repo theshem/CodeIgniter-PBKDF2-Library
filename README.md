@@ -116,7 +116,7 @@ $this->load->library('pbkdf2');
 Encrypt user's password sent from login.
 
 ```PHP
-// get password, which has been sent by using POST method
+// get password, which has been sent via POST method
 $password = $this->input->post('password', TRUE);
 
 $pbkdf2 = $this->pbkdf2->encrypt($password);
@@ -127,7 +127,7 @@ Register user by using `$pbkdf2['password']` as user's password and storing `$pb
 
 Register user by using `$pbkdf2['hash']` as user's password which has been recommended; no need to store user's `salt` seperately.
 
->**NOTE:** Usernames **MUST** be unique. be ensured that users aren't able to choose duplicate usernames. make some strictions on registering users.
+>**NOTE:** Usernames **MUST** be unique. be ensured that users aren't able to choose duplicate usernames. make some restrictions on registering users.
 
 _ _ _
 
@@ -180,7 +180,7 @@ if ($user) {
 ## License
 
 [CodeIgniter PBKDF2 Library](https://github.com/qolami/CodeIgniter-PBKDF2-Library/) was created by [Hashem Qolami](http://qolami.com) and released under the [MIT License](http://opensource.org/licenses/MIT), based on [RFC#2898](http://www.ietf.org/rfc/rfc2898.txt).  
-Feel free to send me email if you have any problems.
+Any suggestions are welcome. [create](https://github.com/qolami/CodeIgniter-PBKDF2-Library/issues/new) an issue if you have any problems/ideas.
 
 Thanks,  
 -Hashem Qolami <<hashem@qolami.com>>
