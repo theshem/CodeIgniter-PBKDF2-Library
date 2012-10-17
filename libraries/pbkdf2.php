@@ -225,25 +225,26 @@ class Pbkdf2 {
 		}
 
 		if (!isset($good_hash)) {
-			$salt = $this->gen_salt($this->salt_length);
+			$salt = $this->gen_salt((int)$this->salt_length);
 		} else {
 			if (strlen($good_hash) === (int)$this->salt_length) {
 				$salt = $good_hash;
 			} elseif (strlen($good_hash) === (int)$this->salt_length + (int)$this->hash_length) {
-				$salt = substr($good_hash, 0, $this->salt_length);
+				$salt = substr($good_hash, 0, (int)$this->salt_length);
 			} else {
 				show_error("PBKDF2 ERROR: Something's wrong with your hash!");
 			}
 		}
 
-		$hash = $this->encode($this->_pbkdf2(
-			$this->algorithm,
-			$password,
-			$salt,
-			$this->iterations,
-			$this->hash_length,
-			TRUE
-		));
+		$hash = $this->encode(
+			$this->_pbkdf2(
+				$this->algorithm,
+				$password,
+				$salt,
+				$this->iterations,
+				$this->hash_length
+			)
+		);
 
 		$return_arr = array(
 			'salt'		=>	$salt,
