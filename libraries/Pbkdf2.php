@@ -20,11 +20,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @subpackage	Libraries
  * @category	Libraries
  * @author  	Hashem Qolami <hashem@qolami.com>
- * @link    	https://github.com/qolami/CodeIgniter-PBKDF2-Library
+ * @link    	https://github.com/HashemQolami/CodeIgniter-PBKDF2-Library
  * @license  	http://opensource.org/licenses/MIT (MIT license)
  * @copyright	2012 Hashem Qolami
- * @since   	1.0
- * @version  	1.0
+ * @since   	1.0.0
+ * @version  	1.0.1
  *
 */
 class Pbkdf2 {
