@@ -98,7 +98,7 @@ encrypt( string $password [, mixed $good_hash = NULL [, bool $object_output = FA
 	>An object (stdClass) with 'salt', 'password', 'hash' properties
 	which vaule of 'hash' is concatenation of 'salt' and 'password'.
 
-`salt` and `password` *indexes/properties* are **128-bit**|16-byte|32-char hash value by default. so `hash` would be double (**256-bit**).
+`salt` and `password` *indexes/properties* are **128-bit**|16-byte|32-char hash value by default. so `hash` would be double **(256-bit)**.
 _ _ _
 
 ###3) Register user
