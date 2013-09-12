@@ -285,5 +285,5 @@ class Pbkdf2 {
 
 }
 
-/* End of file pbkdf2.php */
-/* Location: ./application/libraries/pbkdf2.php */
+/* End of file Pbkdf2.php */
+/* Location: ./application/libraries/Pbkdf2.php */
