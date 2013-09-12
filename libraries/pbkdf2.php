@@ -131,16 +131,6 @@ class Pbkdf2 {
 		}
 
 		return substr($str, 0, $length);
-
-		/* TODO: Research
-			if($diff % 2 == 0) {
-				$start = $end = $length/2;
-			}else{
-				$start = floor($length/2);
-				$end = $start + 1;
-			}
-			return substr($str, -$end, $end).substr($str, 0, $start);
-		*/
 	}
 
 	/**
