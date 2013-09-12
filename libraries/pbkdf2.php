@@ -152,8 +152,42 @@ class Pbkdf2 {
 	 * @return	string
 	 */
 	private function gen_salt($bytes) {
-		$init_vector = mcrypt_create_iv($bytes, MCRYPT_DEV_URANDOM);
-		return $this->encode($init_vector);
+		// mcrypt with urandom is only available on PHP 5.3 or newer
+		if (version_compare(PHP_VERSION, '5.3.0', '>=') && function_exists('mcrypt_create_iv')) {
+			$init_vector = mcrypt_create_iv($bytes, MCRYPT_DEV_URANDOM);
+			if ($init_vector !== FALSE) return $this->encode($init_vector);;
+		}
+
+		// Fall back to SSL methods - may slow down execution by a few ms
+		if (function_exists('openssl_random_pseudo_bytes')) {
+			$init_vector = openssl_random_pseudo_bytes($bytes, $strong);
+			if ($strong === TRUE) return $this->encode($init_vector);
+		}
+
+		// Read from the unix random number generator
+		if (is_readable('/dev/urandom') &&
+		    ($fh = @fopen('/dev/urandom', 'rb'))) {
+			$init_vector = fread($fh, $bytes);
+			fclose($fh);
+			return $this->encode($init_vector);
+		}
+
+		// Code inspired by: Portable PHP password hashing framework
+		// @link: http://www.openwall.com/phpass/
+		// 
+		// Either we dont have the MCrypt library and OpenSSL library
+		// or the data returned was not considered secure.
+		// Fall back on this less secure code.
+		$init_vector = '';
+		$random_state = microtime();
+		if (function_exists('getmypid')) $random_state .= getmypid();
+
+		for ($i = 0; $i < $bytes; $i += 16) {
+			$random_state = md5(microtime() . $random_state);
+			$init_vector .= pack('H*', md5($random_state));
+		}
+
+		return $this->encode(substr($init_vector, 0, $bytes));
 	}
 
 	/**
